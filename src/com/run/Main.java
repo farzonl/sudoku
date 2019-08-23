@@ -1,6 +1,7 @@
 package com.run;
 
-import com.core.Sudoku;
+import com.core.sudoku.SudokuSolver;
+import com.io.csv.CsvReader;
 
 /**
  * A class that runs the sudoku solver.
@@ -16,18 +17,12 @@ public class Main {
    * @param args input csv file that we parse into a sudoku puzzle matrix.
    */
   public static void main(String[] args) {
-    int[][] g = {
-      {0, 0, 2, 0, 0, 0, 0, 4, 1},
-      {0, 0, 0, 0, 8, 2, 0, 7, 0},
-      {0, 0, 0, 0, 4, 0, 0, 0, 9},
-      {2, 0, 0, 0, 7, 9, 3, 0, 0},
-      {0, 1, 0, 0, 0, 0, 0, 8, 0},
-      {0, 0, 6, 8, 1, 0, 0, 0, 4},
-      {1, 0, 0, 0, 9, 0, 0, 0, 0},
-      {0, 6, 0, 4, 3, 0, 0, 0, 0},
-      {8, 5, 0, 0, 0, 0, 4, 0, 0}
-    };
-    Sudoku s = new Sudoku(g);
+    if (args.length < 1) {
+      System.out.println("usage: <app> <filename>.csv");
+      return;
+    }
+    // note: the csv reader is barebones
+    SudokuSolver s = new SudokuSolver((new CsvReader(args[0])).read());
     s.solve();
     s.print();
   }

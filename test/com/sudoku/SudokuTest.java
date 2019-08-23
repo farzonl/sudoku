@@ -2,7 +2,7 @@ package com.sudoku;
 
 import static org.junit.Assert.assertArrayEquals;
 
-import com.core.Sudoku;
+import com.core.sudoku.SudokuSolver;
 import org.junit.Test;
 
 public class SudokuTest {
@@ -56,7 +56,7 @@ public class SudokuTest {
 
   @Test
   public void testDefaultSudokuConstructor() {
-    Sudoku suDefault = new Sudoku();
+    SudokuSolver suDefault = new SudokuSolver();
     int[][] ansMat = suDefault.getMat();
     for (int i = 0; i < ansMat.length; i++) {
       assertArrayEquals(ansMat[i], z0[i]);
@@ -70,7 +70,7 @@ public class SudokuTest {
 
   @Test
   public void testZeroArray() {
-    Sudoku s = new Sudoku(z0);
+    SudokuSolver s = new SudokuSolver(z0);
     s.solve();
     int[][] ansMat = s.getMat();
     for (int i = 0; i < z0Sln.length; i++) {
@@ -91,7 +91,7 @@ public class SudokuTest {
       {3, 4, 5, 2, 9, 7, 6, 8, 1},
       {1, 7, 2, 4, 6, 8, 3, 5, 9}
     };
-    Sudoku s = new Sudoku(easy);
+    SudokuSolver s = new SudokuSolver(easy);
     s.solve();
     int[][] ansMat = s.getMat();
     for (int i = 0; i < easySln.length; i++) {
@@ -112,7 +112,7 @@ public class SudokuTest {
       {9, 6, 7, 4, 3, 8, 1, 5, 2},
       {8, 5, 3, 1, 2, 6, 4, 9, 7}
     };
-    Sudoku s = new Sudoku(hard);
+    SudokuSolver s = new SudokuSolver(hard);
     s.solve();
     int[][] ansMat = s.getMat();
     for (int i = 0; i < hardSln.length; i++) {

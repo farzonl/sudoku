@@ -1,9 +1,10 @@
-package com.core;
+package com.core.sudoku;
 
-import java.util.Arrays;
+import com.core.Cell;
+import com.core.Helper;
 import java.util.stream.IntStream;
 
-public class Sudoku {
+public class SudokuSolver {
   // Rules:
   // 1. Fill 9 x 9 matrix with numbers 1 to 9.
   // 2. Each 3 x 3 sub matrix contains all digits no duplicatess.
@@ -14,12 +15,12 @@ public class Sudoku {
   // write a recursive solve function to allow for easier back tracking
   // for brute force search
 
-  private int[][] matrix;
-  private static final int DIM = 9;
-  private static final Cell END = new Cell(-1, -1);
+  protected int[][] matrix;
+  protected static final int DIM = 9;
+  protected static final Cell END = new Cell(-1, -1);
 
   /** default constructor initalized matrix to zero. */
-  public Sudoku() {
+  public SudokuSolver() {
     matrix = new int[DIM][DIM];
 
     IntStream.range(0, DIM * DIM)
@@ -36,7 +37,7 @@ public class Sudoku {
    *
    * @param m - input matrix compied to internal representation.
    */
-  public Sudoku(int[][] m) {
+  public SudokuSolver(int[][] m) {
     // ideally we would have liked to have just done:
     // this.matrix = m; but this would allow outside class
     // to change our internal representation, safer to copy instead.
@@ -60,7 +61,7 @@ public class Sudoku {
   }
 
   private boolean isSubMatSafe(int boxRow, int boxCol, int n) {
-    return IntStream.range(0, 9)
+    return IntStream.range(0, DIM)
         .noneMatch(
             i -> {
               int r = i / 3;
@@ -99,10 +100,10 @@ public class Sudoku {
     // Note: java has no return readonly so we won't return matrix;
     // b\c that would expose internal representation. Instead we will
     // copy each row into a new matrix, and return that.
-    return Arrays.stream(matrix).map(int[]::clone).toArray(int[][]::new);
+    return Helper.cloneMatrix(matrix);
   }
 
-  private Cell getOpenCell() {
+  protected Cell getOpenCell() {
     for (int i = 0; i < DIM; i++) {
       for (int j = 0; j < DIM; j++) {
         if (matrix[i][j] == 0) {
@@ -113,7 +114,7 @@ public class Sudoku {
     return END;
   }
 
-  private void add(Cell open, int n) {
+  protected void add(Cell open, int n) {
     matrix[open.row][open.col] = n;
   }
 
