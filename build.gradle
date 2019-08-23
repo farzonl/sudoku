@@ -55,7 +55,7 @@ run {
 jacocoTestReport {
     reports {
         xml.enabled true
-        html.enabled false
+        html.enabled true
     }
 }
 
@@ -67,8 +67,16 @@ tasks.withType(FindBugs) {
     }
 }
 
+findbugs {
+    ignoreFailures = false
+    effort = "max"
+    reportLevel = "high"
+}
+
 checkstyle {
   toolVersion = "${versions.checkstyle}"
+  ignoreFailures = false
+  maxWarnings = 0
   config = resources.text.fromArchiveEntry(configurations.checkstyleConfig, "google_checks.xml")
 }
 

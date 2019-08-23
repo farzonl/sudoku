@@ -2,10 +2,21 @@ package com.run;
 
 import com.core.Sudoku;
 
+/**
+ * A class that runs the sudoku solver.
+ *
+ * @author Farzon Lotfi
+ * @version 1.0
+ */
 public class Main {
 
+  /**
+   * The main function, used to solve a given sudoku puzzle.
+   *
+   * @param args input csv file that we parse into a sudoku puzzle matrix.
+   */
   public static void main(String[] args) {
-    int g[][] = {
+    int[][] g = {
       {0, 0, 2, 0, 0, 0, 0, 4, 1},
       {0, 0, 0, 0, 8, 2, 0, 7, 0},
       {0, 0, 0, 0, 4, 0, 0, 0, 9},
