@@ -18,7 +18,8 @@ public class CsvReader {
   /**
    * the constructor for the CSV Reader.
    *
-   * @param filePath - the directory to the csv file we want to read in.
+   * @param filePath - The directory to the csv file we want to read in.
+   * @param delimiter - The token we want to split on per line.
    */
   public CsvReader(String filePath, String delimiter) {
     this.filePath = filePath;

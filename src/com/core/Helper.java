@@ -11,7 +11,8 @@ public class Helper {
   /**
    * Helper function that clones a 2d array and returns it.
    *
-   * @param matrix - the 2d array we want to clone.
+   * @param matrix - The 2d array we want to clone.
+   * @return Returns a copy of the input matrix.
    */
   public static int[][] cloneMatrix(int[][] matrix) {
     return Arrays.stream(matrix).map(int[]::clone).toArray(int[][]::new);
@@ -21,7 +22,7 @@ public class Helper {
    * A function used to shuffle an array randomly using a swap between The current index and a
    * random index.
    *
-   * @param array the array we will shuffle.
+   * @param array The array we will shuffle.
    */
   public static void shuffle(int[] array) {
     SecureRandom rndGen = new SecureRandom();
@@ -57,8 +58,10 @@ public class Helper {
   /**
    * A generic function that counts frequency of an element in a list.
    *
+   * @param <T> The type of the element we are searching for in the collection.
    * @param list The collection we will iterate over to find frequencies.
    * @param n The element we will search for to increment our counter.
+   * @return Returns the frequency the element n was seen in the list.
    */
   public static <T> int countElements(List<T> list, T n) {
     return Collections.frequency(list, n);
@@ -69,6 +72,7 @@ public class Helper {
    *
    * @param mat The 2d array we will iterate over to find frequencies.
    * @param n The element we will search for to increment our counter.
+   * @return Returns the frequency the element n was seen in the matrix.
    */
   public static int countMatElements(int[][] mat, int n) {
     return Arrays.stream(mat)
