@@ -1,6 +1,7 @@
 package com.sudoku;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 import com.core.Helper;
 import com.core.sudoku.PuzzleGenerator;
@@ -17,10 +18,6 @@ public class PuzzleGeneratorTest {
     int[] gridPos = pg.getGridPos();
     Set<Integer> gridPosSet = new HashSet<Integer>(Helper.arrayToList(gridPos));
     assertEquals(gridPosSet.size(), gridPos.length);
-
-    // import java.util.Arrays;
-    // Arrays.stream(gridPos).forEach(System.out::println);
-    // gridPosSet.stream().forEach(System.out::println);
   }
 
   @Test
@@ -29,22 +26,21 @@ public class PuzzleGeneratorTest {
     int[] guessPos = pg.getGuesses();
     Set<Integer> guessPosSet = new HashSet<Integer>(Helper.arrayToList(guessPos));
     assertEquals(guessPosSet.size(), guessPos.length);
-
-    // import java.util.Arrays;
-    // Arrays.stream(gridPos).forEach(System.out::println);
-    // gridPosSet.stream().forEach(System.out::println);
   }
 
   @Test
   public void testPuzzleToSolver() {
-    PuzzleGenerator pg = new PuzzleGenerator();
-    int[][] puzzle = pg.getMat();
-    pg.print();
-    SudokuSolver s = new SudokuSolver(puzzle);
-    s.solve();
-    System.out.println();
-    // int[][] ansMat = s.getMat();
-    s.print();
+    for(int n = 0; n < 10; n++) {
+        PuzzleGenerator pg = new PuzzleGenerator();
+        int[][] puzzle = pg.getMat();
+        int[][] puzzleSln = pg.puzzleSln();
+        SudokuSolver s = new SudokuSolver(puzzle);
+        s.solve();
+        int[][] ansMat = s.getMat();
+        for (int i = 0; i < puzzleSln.length; i++) {
+            assertArrayEquals(puzzleSln[i], ansMat[i]);
+        }
+    }
   }
 
   @Test

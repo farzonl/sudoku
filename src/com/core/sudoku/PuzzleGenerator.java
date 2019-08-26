@@ -47,6 +47,10 @@ public class PuzzleGenerator extends SudokuSolver {
     slnCpy = this.getMat();
   }
 
+  public int[][] puzzleSln() {
+      return Helper.cloneMatrix(slnCpy);
+  }
+
   /** A function that checks if we can unasign a cell and still have a unque sudoku matrix. */
   private void genPuzzle() {
     Arrays.stream(gridPos)
@@ -84,5 +88,29 @@ public class PuzzleGenerator extends SudokuSolver {
       add(openCell, 0); // reset
     }
     return count;
+  }
+
+    /**
+   * A recursive function that solves sudoku.
+   *
+   * @return will return true when solution is found.
+   */
+  @Override
+  public boolean solve() {
+    Cell openCell = getOpenCell();
+    if (openCell == END) {
+      return true;
+    }
+    for (int n = 0; n < 9; n++) {
+      if (isSafe(openCell.row, openCell.col, guesses[n])) {
+        add(openCell, guesses[n]);
+        if (solve()) {
+          return true;
+        }
+        add(openCell, 0); // reset
+      }
+    }
+
+    return false;
   }
 }
