@@ -1,5 +1,6 @@
 plugins {
   id 'com.github.sherter.google-java-format' version '0.8'
+  //id "net.ltgt.errorprone" version "0.8.1"
 }
 
 apply plugin: 'java'
@@ -20,7 +21,9 @@ configurations {
 
 def versions = [
   checkstyle: '8.23',
-  findbugs: '3.0.1'
+  findbugs: '3.0.1',
+  findsecbugsplugin:'1.4.4',
+  //errorprone: '2.3.3'
 ]
 dependencies {
     testCompile 'junit:junit:4.8.2'
@@ -28,6 +31,11 @@ dependencies {
         transitive = false
     }
     findbugs "com.google.code.findbugs:findbugs:${versions.findbugs}"
+    findbugs configurations.findbugsPlugins.dependencies
+    findbugsPlugins "com.h3xstream.findsecbugs:findsecbugs-plugin:${versions.findsecbugsplugin}"
+    //errorprone "com.google.errorprone:error_prone_core:${versions.errorprone}"
+    //errorproneJavac group: "com.google.errorprone", name: "javac", version: "+"
+    //compile group: 'com.google.errorprone',   name: 'error_prone_annotations', version: '+'
 }
 
 jar {
@@ -67,6 +75,12 @@ jacocoTestReport {
 
 tasks.withType(FindBugs) {
     it.group = 'verification'
+
+    classes = fileTree(project.rootDir.absolutePath).include("**/*.class");
+    source = fileTree(project.rootDir.absolutePath).include("**/*.java");
+    classpath = files()
+    pluginClasspath = project.configurations.findbugsPlugins
+
     reports {
         xml.enabled false
         html.enabled true
@@ -98,4 +112,7 @@ tasks.withType(com.github.sherter.googlejavaformatgradleplugin.VerifyGoogleJavaF
     it.group = 'format'
 }
 
+//tasks.withType(JavaCompile) {
+//  options.compilerArgs << "-Xlint:all" << "-Werror"
+//}
 check.dependsOn jacocoTestReport

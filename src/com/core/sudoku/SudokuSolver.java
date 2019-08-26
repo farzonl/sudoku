@@ -7,9 +7,9 @@ import java.util.stream.IntStream;
 public class SudokuSolver {
   // Rules:
   // 1. Fill 9 x 9 matrix with numbers 1 to 9.
-  // 2. Each 3 x 3 sub matrix contains all digits no duplicatess.
-  // 3. Each row contains all digits no duplicatess.
-  // 4. Each column contains all digits no duplicatess.
+  // 2. Each 3 x 3 sub matrix contains all digits no duplicates.
+  // 3. Each row contains all digits no duplicates.
+  // 4. Each column contains all digits no duplicates.
   // Plan of attack: write a boolean check for
   // rules 2-4 each as their own helper functions.
   // write a recursive solve function to allow for easier back tracking
@@ -19,7 +19,7 @@ public class SudokuSolver {
   protected static final int DIM = 9;
   protected static final Cell END = new Cell(-1, -1);
 
-  /** default constructor initalized matrix to zero. */
+  /** default constructor initializes matrix to zero. */
   public SudokuSolver() {
     matrix = new int[DIM][DIM];
 
@@ -35,7 +35,7 @@ public class SudokuSolver {
   /**
    * constructor that sets matrix to the input.
    *
-   * @param m - input matrix compied to internal representation.
+   * @param m - input matrix compiled to internal representation.
    */
   public SudokuSolver(int[][] m) {
     // ideally we would have liked to have just done:
@@ -79,12 +79,12 @@ public class SudokuSolver {
   }
 
   /**
-   * isSafe checks rules 2-4 to make sure a row, collumn, and submatrix is safe for the addition of
-   * the inputed number.
+   * isSafe checks rules 2-4 to make sure a row, column, and matrix is safe for the addition of the
+   * input number.
    *
    * @param r - current row we want to check.
-   * @param c - current collumn we want to check.
-   * @param n - current number wa want to check.
+   * @param c - current column we want to check.
+   * @param n - current number we want to check.
    * @return returns true if safe to write to cell, false otherwise.
    */
   public boolean isSafe(int r, int c, int n) {
@@ -97,7 +97,7 @@ public class SudokuSolver {
    * @return a copy of the internal matrix.
    */
   public int[][] getMat() {
-    // Note: java has no return readonly so we won't return matrix;
+    // Note: java has no return read-only so we won't return matrix;
     // b\c that would expose internal representation. Instead we will
     // copy each row into a new matrix, and return that.
     return Helper.cloneMatrix(matrix);
@@ -119,7 +119,7 @@ public class SudokuSolver {
   }
 
   /**
-   * A recursive function that solves sudoku.
+   * A recursive function that solves Sudoku.
    *
    * @return will return true when solution is found.
    */

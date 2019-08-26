@@ -1,7 +1,7 @@
 package com.sudoku;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 import com.core.Helper;
 import com.core.sudoku.PuzzleGenerator;
@@ -30,16 +30,16 @@ public class PuzzleGeneratorTest {
 
   @Test
   public void testPuzzleToSolver() {
-    for(int n = 0; n < 10; n++) {
-        PuzzleGenerator pg = new PuzzleGenerator();
-        int[][] puzzle = pg.getMat();
-        int[][] puzzleSln = pg.puzzleSln();
-        SudokuSolver s = new SudokuSolver(puzzle);
-        s.solve();
-        int[][] ansMat = s.getMat();
-        for (int i = 0; i < puzzleSln.length; i++) {
-            assertArrayEquals(puzzleSln[i], ansMat[i]);
-        }
+    for (int n = 0; n < 10; n++) {
+      PuzzleGenerator pg = new PuzzleGenerator();
+      int[][] puzzle = pg.getMat();
+      int[][] puzzleSln = pg.puzzleSln();
+      SudokuSolver s = new SudokuSolver(puzzle);
+      s.solve();
+      int[][] ansMat = s.getMat();
+      for (int i = 0; i < puzzleSln.length; i++) {
+        assertArrayEquals(puzzleSln[i], ansMat[i]);
+      }
     }
   }
 

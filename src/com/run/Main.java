@@ -22,7 +22,7 @@ public class Main {
       return;
     }
     // note: the csv reader is barebones
-    SudokuSolver s = new SudokuSolver((new CsvReader(args[0])).read());
+    SudokuSolver s = new SudokuSolver(new CsvReader(args[0]).read());
     s.solve();
     s.print();
   }

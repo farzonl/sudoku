@@ -45,13 +45,16 @@ public class CsvReader {
    *
    * @return returns a matrix of the read in 2d array.
    */
+  @SuppressWarnings("CatchAndPrintStackTrace")
   public int[][] read() {
     List<List<Integer>> mat = new ArrayList<List<Integer>>();
     try (Stream<String> stream = Files.lines(Paths.get(filePath))) {
       stream.forEach(
           line -> {
             mat.add(
-                Arrays.stream(line.split(",")).map(Integer::valueOf).collect(Collectors.toList()));
+                Arrays.stream(line.split(this.delimiter))
+                    .map(Integer::valueOf)
+                    .collect(Collectors.toList()));
           });
     } catch (IOException e) {
       e.printStackTrace();

@@ -7,6 +7,7 @@
 [![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/farzonl/sudoku.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/farzonl/sudoku/context:java)
 
 ## Demo
+![](https://raw.githubusercontent.com/farzonl/sudoku/master/demo.svg?sanitize=true)
 
 ## Gradle Plugins
 - java
@@ -14,6 +15,12 @@
 - application
 - checkstyle
 - findbugs
+- find-sec-bugs-plugin
+- errorprone
+
+## Misc Dep
+- git spell check (used for pre-commit spell checking)
+See instructions here: https://github.com/mprpic/git-spell-check
 
 ## how to build?
 ```

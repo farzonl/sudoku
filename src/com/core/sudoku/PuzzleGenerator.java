@@ -12,7 +12,7 @@ public class PuzzleGenerator extends SudokuSolver {
   private int[][] slnCpy;
 
   /**
-   * constructor of the PuzzleGenerator. sets up random shuffles and initalizes the sudoku matrix.
+   * constructor of the PuzzleGenerator. sets up random shuffles and initializes the Sudoku matrix.
    */
   public PuzzleGenerator() {
     super();
@@ -48,10 +48,10 @@ public class PuzzleGenerator extends SudokuSolver {
   }
 
   public int[][] puzzleSln() {
-      return Helper.cloneMatrix(slnCpy);
+    return Helper.cloneMatrix(slnCpy);
   }
 
-  /** A function that checks if we can unasign a cell and still have a unque sudoku matrix. */
+  /** A function that checks if we can unassigned a cell and still have a unique Sudoku matrix. */
   private void genPuzzle() {
     Arrays.stream(gridPos)
         .forEach(
@@ -76,7 +76,7 @@ public class PuzzleGenerator extends SudokuSolver {
       count++;
       return count;
     }
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < DIM; i++) {
       if (count > 1) {
         break;
       }
@@ -90,8 +90,8 @@ public class PuzzleGenerator extends SudokuSolver {
     return count;
   }
 
-    /**
-   * A recursive function that solves sudoku.
+  /**
+   * A recursive function that solves Sudoku.
    *
    * @return will return true when solution is found.
    */
@@ -101,7 +101,7 @@ public class PuzzleGenerator extends SudokuSolver {
     if (openCell == END) {
       return true;
     }
-    for (int n = 0; n < 9; n++) {
+    for (int n = 0; n < DIM; n++) {
       if (isSafe(openCell.row, openCell.col, guesses[n])) {
         add(openCell, guesses[n]);
         if (solve()) {

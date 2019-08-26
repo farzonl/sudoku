@@ -1,9 +1,9 @@
 package com.core;
 
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Helper {
@@ -24,7 +24,7 @@ public class Helper {
    * @param array the array we will shuffle.
    */
   public static void shuffle(int[] array) {
-    Random rndGen = new Random();
+    SecureRandom rndGen = new SecureRandom();
     for (int i = 0; i < array.length; i++) {
       int randPos = rndGen.nextInt(array.length);
       swap(array, i, randPos);
@@ -32,7 +32,7 @@ public class Helper {
   }
 
   /**
-   * A simple swap function that swaps elements in an array by indicies.
+   * A simple swap function that swaps elements in an array by indices.
    *
    * @param array The array we are looking to swap values between.
    * @param i The first index we will swap.
@@ -53,16 +53,6 @@ public class Helper {
   public static List<Integer> arrayToList(int[] array) {
     return Arrays.stream(array).boxed().collect(Collectors.toList());
   }
-
-  // public static boolean matrixCotains(int[][] mat, int n) {
-  //  return IntStream.range(0, mat.length * mat[0].length)
-  //      .anyMatch(
-  //          i -> {
-  //            int r = i / mat.length;
-  //            int c = i % mat.length;
-  //            return mat[r][c] == n;
-  //          });
-  // }
 
   /**
    * A generic function that counts frequency of an element in a list.
